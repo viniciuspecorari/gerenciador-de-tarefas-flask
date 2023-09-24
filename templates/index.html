@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Tarefas</title>
+{% endblock %}
+
+{% block header %}
+<h1>Lista de Tarefas</h1>
+{% endblock %}
+
+
+{% block body %}
+<div class="content">
+
+    <div class="row" id="botao-cadastrar">
+        <div class="col-md-6">
+            <a href="/create/">
+                <button type="button" class="btn btn-outline-primary waves-effect">
+                    <i class="fa-solid fa-circle-plus"></i> Cadastrar
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tarefa</th>
+                <th scope="col">Data</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for task in tasks%}
+            <tr>
+                <th>{{ task.id }}</th>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.strftime("%d/%m/%Y") }}</td>
+                <td>{{ task.date_created.strftime("%H:%M:%S") }}</td>
+                <td>
+                    {% if task.completed == 0 %}
+                    {{ task.completed }}
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/check.png') }}" alt="Edit" width="25">
+                    {% endif %}
+
+                </td>
+                <td><a href="/update/{{task.id}}"><img
+                            src="{{ url_for('static', filename='images/edit-button-white.png') }}" alt="Edit"
+                            width="25">
+                    </a></td>
+                <td><a href="/delete/{{task.id}}"><img src="{{ url_for('static', filename='images/delete-white.png') }}"
+                            alt="Delete" width="25"></a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}

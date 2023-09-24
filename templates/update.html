@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Tarefas</title>
+{% endblock %}
+
+{% block header %}
+<h1>Atualizar Tarefa</h1>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="form">
+        <form action="/update/{{ task.id }}" method="POST">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <input type="text-area" class="form-control" name="content" id="content"
+                        placeholder="Digite sua tarefa" value="{{ task.content }}">
+                </div>
+                <div class="col-md-3">
+                    {% if task.completed == 1 %}
+                    <input type="checkbox" class="form-control" name="completed" id="completed" checked>
+                    {% else %}
+                    <input type="checkbox" class="form-control" name="completed" id="completed">
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" class="btn btn-primary mb-2" value="Update">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

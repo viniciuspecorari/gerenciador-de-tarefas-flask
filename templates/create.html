@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Tarefas</title>
+{% endblock %}
+
+{% block header %}
+<h1>Cadastrar Tarefa</h1>
+{% endblock %}
+
+
+{% block body %}
+<div class="content">
+    <form action="/create/" method="POST">
+        <div class="form-row">
+            <div class="col-md-3">
+                <input type="text-area" class="form-control" name="content" id="content"
+                    placeholder="Digite sua tarefa">
+            </div>
+            <div class="col-md-6">
+                <input type="submit" class="btn btn-primary mb-2" value="Add Task">
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
